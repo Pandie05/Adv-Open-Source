@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Read Todo</title>
+    <style>
+      body { font-family: Arial, sans-serif; }
+      li { margin: 8px 0; }
+      .done { text-decoration: line-through; opacity: 0.7; }
+      code { background: #f3f3f3; padding: 2px 6px; border-radius: 6px; }
+    </style>
+  </head>
+  <body>
+    <h1>Todos (Fetched from <code>/todo</code>)</h1>
+    <p><a href="/index">Back to index</a></p>
+
+    <ul id="todoList"></ul>
+
+    <script>
+      async function loadTodos() {
+        const res = await fetch("/todo");
+        const todos = await res.json();
+
+        const ul = document.getElementById("todoList");
+        ul.innerHTML = "";
+
+        for (const t of todos) {
+          const li = document.createElement("li");
+          li.className = t.completed ? "done" : "";
+          li.textContent = `#${t.id} - ${t.title} (completed: ${t.completed})`;
+          ul.appendChild(li);
+        }
+      }
+
+      loadTodos().catch(() => {
+        document.getElementById("todoList").innerHTML =
+          "<li>Failed to load todos.</li>";
+      });
+    </script>
+  </body>
+</html>
