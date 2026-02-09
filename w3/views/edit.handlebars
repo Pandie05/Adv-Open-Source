@@ -1,0 +1,40 @@
+<h1>Update Employee</h1>
+
+<form action="/employees/{{employee._id}}?_method=PUT" method="POST">
+  <div>
+    <label>First Name</label>
+    <input name="firstName" type="text" required value="{{employee.firstName}}" />
+  </div>
+
+  <div>
+    <label>Last Name</label>
+    <input name="lastName" type="text" required value="{{employee.lastName}}" />
+  </div>
+
+  <div>
+    <label>Department</label>
+    <select name="department" required>
+      {{#each departments}}
+        <option value="{{this}}" {{#ifEquals this ../employee.department}}selected{{/ifEquals}}>{{this}}</option>
+      {{/each}}
+    </select>
+  </div>
+
+  <div>
+    <label>Start Date</label>
+    <input name="startDate" type="date" required value="{{employee.startDateISO}}" />
+  </div>
+
+  <div>
+    <label>Job Title</label>
+    <input name="jobTitle" type="text" required value="{{employee.jobTitle}}" />
+  </div>
+
+  <div>
+    <label>Salary</label>
+    <input name="salary" type="number" min="0" step="1" required value="{{employee.salary}}" />
+  </div>
+
+  <button type="submit">Save</button>
+  <a href="/employees">Cancel</a>
+</form>

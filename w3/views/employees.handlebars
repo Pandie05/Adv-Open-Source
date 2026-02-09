@@ -1,0 +1,39 @@
+<h1>Employees</h1>
+
+{{#if employees.length}}
+  <table border="1" cellpadding="8">
+    <thead>
+      <tr>
+        <th>First</th>
+        <th>Last</th>
+        <th>Department</th>
+        <th>Start Date</th>
+        <th>Job Title</th>
+        <th>Salary</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {{#each employees}}
+        <tr>
+          <td>{{firstName}}</td>
+          <td>{{lastName}}</td>
+          <td>{{department}}</td>
+          <td>{{startDate}}</td>
+          <td>{{jobTitle}}</td>
+          <td>{{salary}}</td>
+          <td>
+            <a href="/employees/{{_id}}/edit">Update</a>
+
+            <form action="/employees/{{_id}}?_method=DELETE" method="POST" style="display:inline;">
+              <button type="submit">Delete</button>
+            </form>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+{{else}}
+  <p>No employees yet.</p>
+{{/if}}
