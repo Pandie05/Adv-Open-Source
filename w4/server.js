@@ -20,6 +20,10 @@ mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB connected"))
   .catch(err => console.error(err));
 
+
+// cookies so my app does not explode
+app.set("trust proxy", 1);
+
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
@@ -30,6 +34,8 @@ app.use(session({
   }),
   cookie: {
     httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
     maxAge: 1000 * 60 * 60 * 24
   }
 }));
