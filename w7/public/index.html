@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Employees (GraphQL)</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <h1>Employee Database (GraphQL)</h1>
+
+  <h2 id="deleteMsg"></h2>
+
+  <section class="card">
+    <h3 id="formTitle">Add Employee</h3>
+
+    <form id="empForm">
+      <input type="hidden" id="empId" />
+
+      <label>First Name</label>
+      <input id="firstName" required />
+
+      <label>Last Name</label>
+      <input id="lastName" required />
+
+      <label>Department</label>
+      <select id="department" required>
+        <option value="">Select...</option>
+        <option>Engineering</option>
+        <option>HR</option>
+        <option>Sales</option>
+      </select>
+
+      <label>Start Date</label>
+      <input id="startDate" type="date" required />
+
+      <label>Job Title</label>
+      <input id="jobTitle" required />
+
+      <label>Salary</label>
+      <input id="salary" type="number" step="0.01" required />
+
+      <div class="row">
+        <button type="submit" id="saveBtn">Save</button>
+        <button type="button" id="cancelBtn">Cancel</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="card">
+    <h3>Employees</h3>
+    <table id="empTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Department</th>
+          <th>Start Date</th>
+          <th>Job Title</th>
+          <th>Salary</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="empTbody"></tbody>
+    </table>
+  </section>
+
+  <script src="/app.js"></script>
+</body>
+</html>
